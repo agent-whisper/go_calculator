@@ -16,17 +16,17 @@ import (
 	"os"
 	"strconv"
 	"strings"
+        "zilch/stack"
 )
 
-// EOL is for handling strings on windows
-const EOL = '\r'
-
 func main() {
-	firstOperand := readCliInputAsInt("Enter first number: ")
-	operator := readCliInputAsStr("Enter operator (+, -, *, /): ")
-	secondOperand := readCliInputAsInt("Enter second number: ")
+	//firstOperand := readCliInputAsInt("Enter first number: ")
+	//operator := readCliInputAsStr("Enter operator (+, -, *, /): ")
+	//secondOperand := readCliInputAsInt("Enter second number: ")
 
-	CalculateAndPrintResult(firstOperand, secondOperand, operator)
+	//CalculateAndPrintResult(firstOperand, secondOperand, operator)
+        s := parse("asdf")
+        fmt.Println(s)
 }
 
 // CalculateAndPrintResult prints a formatted string showing the operands, operator, and the result
@@ -61,7 +61,7 @@ func readCliInputAsInt(placeholderText string) int {
 func readCliInputAsStr(placeholderText string) string {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print(placeholderText)
-	cliInput, _ := reader.ReadString(EOL)
+	cliInput, _ := reader.ReadString('\n')
 
 	// Trims "\r\n" runes on windows. Won't have effect on Linux
 	cliInput = strings.TrimRight(cliInput, "\r\n")
@@ -75,4 +75,8 @@ func convertStrToInt(strToConvert string) int {
 		log.Fatal(err)
 	}
 	return i
+}
+
+func parse(expression string) *stack.Stack {
+  return nil
 }
